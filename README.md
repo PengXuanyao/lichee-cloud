@@ -10,4 +10,4 @@ You can find more interesting projects on [cnrv/riscv-innovations: RISC-V is whe
 
 ## About this repo
 
-It is still in development, this torial and source code will be added to it.
+It is still in development, the torial and source code will be added to it.

@@ -53,3 +53,4 @@
 * [LicheeRV 入门开发一帖通](https://bbs.sipeed.com/thread/1300)
 * [Debian10开启SSH服务\_51CTO博客\_centos开启ssh服务](https://blog.51cto.com/u_437549/4331925)
 * [linux - How to disable messages from syslogd for my own user? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/517417/how-to-disable-messages-from-syslogd-for-my-own-user)
+* [树莓派安装owncloud - 放码过来](https://blog.huangyuanlove.com/2019/08/03/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85owncloud/)

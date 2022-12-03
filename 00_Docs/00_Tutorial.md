@@ -46,6 +46,15 @@
   * `*.emerg                    :omusrmsg:*`
   * -->
   * `# *.emerg                    :omusrmsg:*`
+8. config wifi through CLI
+  * `sudo su`
+  * `ifconfig -a` (here should be a `wlan0`, just confirm it)
+  * `ifconfig wlan0 up`
+  * `wpa_passphrase {SSID} {PASSWORD} > /etc/wpa_supplicant/{SSID}.conf` (Use your wifi id and passwd)
+    * for example: `wpa_passphrase "704" "12345678" > /etc/wpa_supplicant/704.conf`
+  * `wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/{SSID}.conf -B` (Connect wifi)
+  * `dhclient wlan0` (allocate ip)
+  * you should be ok now.
 
 ## Reference
 

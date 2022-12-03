@@ -43,9 +43,9 @@
 7. close rsyslog
   * `vim /etc/rsyslog.conf`
   * comment this line(use #):
-  * *.emerg                    :omusrmsg:*
+  * `*.emerg                    :omusrmsg:*`
   * -->
-  * # *.emerg                    :omusrmsg:*
+  * `# *.emerg                    :omusrmsg:*`
 
 ## Reference
 

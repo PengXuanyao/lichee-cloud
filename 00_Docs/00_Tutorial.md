@@ -33,11 +33,23 @@
 5. Update and upgrade
   * `sudo apt update`
   * `sudo apt upgrade`(This takes time)
-6. Install service
-  * apt install sysvinit-utils
-7. Open ssh
+6. Set and open ssh
+  * `vim /etc/ssh/sshd_config` and change below
+  * PermitRootLogin yes
+  * PubkeyAuthentication no
+  * PasswordAuthentication yes
+  * `/etc/init.d/ssh start`
+  * `sudo update-rc.d ssh enable` (startup launch setting)
+7. close rsyslog
+  * `vim /etc/rsyslog.conf`
+  * comment this line(use #):
+  * *.emerg                    :omusrmsg:*
+  * -->
+  * # *.emerg                    :omusrmsg:*
 
 ## Reference
 
 * [Sipeed荔枝派Lichee RV：安装debian系统、配置环境与外壳设计简易教程 - 知乎](https://zhuanlan.zhihu.com/p/468897470)
 * [LicheeRV 入门开发一帖通](https://bbs.sipeed.com/thread/1300)
+* [Debian10开启SSH服务\_51CTO博客\_centos开启ssh服务](https://blog.51cto.com/u_437549/4331925)
+* [linux - How to disable messages from syslogd for my own user? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/517417/how-to-disable-messages-from-syslogd-for-my-own-user)

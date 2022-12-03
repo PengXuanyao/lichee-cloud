@@ -55,6 +55,10 @@
   * `wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/{SSID}.conf -B` (Connect wifi)
   * `dhclient wlan0` (allocate ip)
   * you should be ok now.
+9. get ownclowd
+  * `sudo apt install wget`
+  * `wget https://download.owncloud.com/server/stable/owncloud-complete-latest.tar.bz2`
+  * this take time, you can download 
 
 ## Reference
 

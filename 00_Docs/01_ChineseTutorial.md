@@ -33,3 +33,7 @@
   * GPart（Linux）（分区软件，windows上可以使用DiskGenius等）
   * Angry IP Scanner（Linux / Windows）
   * PhoenixCard（Windows）（镜像烧录工具，别的好像不行）
+
+## 编译安装php7.4
+
+`./configure --prefix=/usr/local/php --enable-fpm --enable-mbstring --enable-bcmath --enable-fileinfo --with-openssl --with-zlib --with-iconv --with-curl --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pear --enable-xml --enable-sockets --enable-soap --enable-cli --without-pcre-jit --disable-fileinfo`

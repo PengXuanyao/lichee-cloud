@@ -14,7 +14,7 @@
 
 介于尝试过自带的系统时不时宕机，并且在突然断电的情况下，非常容易出现系统损坏，第二次无法正常启动的现象。因此，使用社区维护的armbian系统。
 
-armbian目前有riscv的版本，([大佬](https://forum.armbian.com/topic/21465-armbian-image-and-build-support-for-risc-v/)提供，可以直接食用）。目前没有出现宕机和异常掉电无法启动的情况，稳定性好。由于文件下载需要访问外网，可以使用科学上网方法，或者使用我镜像到百度网盘的版本（链接: https://pan.baidu.com/s/1RIwgU4e6gdPVJCVLtLGohQ 提取码: 8ha5）（后期可能不会再更新镜像，请关注原作者，如有问题也可以提issue，如有时间可帮助解决）（**百度网盘加速**可以使用**软件小妹的油猴插件**，自行百度），其是ubuntu系统。
+armbian目前有riscv的版本，([大佬](https://forum.armbian.com/topic/21465-armbian-image-and-build-support-for-risc-v/)提供，可以直接食用）。目前没有出现宕机和异常掉电无法启动的情况，稳定性好。由于文件下载需要访问外网，可以使用科学上网方法，或者使用我镜像到百度网盘的版本（链接: https://pan.baidu.com/s/1PVgEpbCsxN9aIaIUmg3KMw 提取码: 5ezv）（后期可能不会再更新镜像，请关注原作者，如有问题也可以提issue，如有时间可帮助解决）（**百度网盘加速**可以使用**软件小妹的油猴插件**，自行百度）。
 
 下载好镜像文件后，使用烧录工具[balenaEtcher - Flash OS images to SD cards & USB drives](https://www.balena.io/etcher?ref=etcher_footer)可以将镜像系统文件直接烧录到SD卡上。
 
@@ -23,6 +23,10 @@ armbian目前有riscv的版本，([大佬](https://forum.armbian.com/topic/21465
 正常烧录完成系统后，将sd卡插入LicheeRV，上电启动。（这里需要给Lichee RV Docker外接一个显示器和USB键盘进行操作）。
 
 系统在进行第一次启动的时候，会根据SD卡的大小对分区进行自动调整，充分利用SD卡的容量。
+
+初始的账号是：root，密码：1234
+
+在引导下完成wifi、用户名、密码等设置。
 
 在进入系统后，使用armbian-config命令进行设置：
 
@@ -83,6 +87,16 @@ armbian目前有riscv的版本，([大佬](https://forum.armbian.com/topic/21465
    ./syncthing
    ```
 
+   第一次运行时会创建一个默认设置，ctrl + c 结束当前运行的syncthing，再通过文本编辑器更改其中的设置：
+
+   ```bashs
+   nano ~/.config/syncthing/config.xml
+   ```
+
+   找到其中有`127.0.0.1`的一行，改为`0.0.0.0`。
+
+   再次重新打开。
+
    然后，其会开放一个端口，默认是8384，访问地址：`{licheepi's ip} : 8384`即可进入到syncthing界面进行管理。
 
    ![进入界面](https://s2.loli.net/2023/01/29/ULKd4xgXYkSHOqm.png)
@@ -90,6 +104,28 @@ armbian目前有riscv的版本，([大佬](https://forum.armbian.com/topic/21465
    在左侧的文件夹下设置当前 lichee pi 的共享文件夹，然后在需要同步的设备上（例如，我是一台笔记本，就直接在笔记本上下载对应版本的syncthing并运行，并添加对应的共享文件夹，即可让两个文件夹之间实时同步）。
 
 4. 部署minisever软件。
+
+   minisever的作用是方便进行文件展示和上传，补充syncthing 的不足之处（syncthing是自动进行后台的备份，不能直接文件操作）。
+
+   找到miniserver的官网release，同样选择riscv版本。[Release v0.22.0 · svenstaro/miniserve](https://github.com/svenstaro/miniserve/releases/tag/v0.22.0)
+
+   通过ftp传输文件到lichee pi上，设置minisever的运行权限，然后使用参数启动miniserver：
+
+   ```bash
+   chmod +x miniserve-0.22.0-riscv64gc-unknown-linux-gnu 
+   # -U 使能创建文件夹，-u uploads 使能在uploads文件夹下上传文件的功能，-D 排序文件夹优先 -- ~/Sync server的文件夹路径
+   ./miniserve-0.22.0-riscv64gc-unknown-linux-gnu -U -u uploads -D -- ~/Sync
+   ```
+
+   展示的目录如下：
+
+   ![](https://s2.loli.net/2023/01/30/JGOw9Bm81FQldaq.png)
+
+至此，一个简易的云盘lichee cloud搭建完成，具有文件上传备份和同步盘的功能。
+
+## 参考
+
+1. [Risc-v 开源软件安装与自行编译 - 昉·星光 （中文论坛） - RVspace Forum](https://forum.rvspace.org/t/risc-v/330)
 
 
 
